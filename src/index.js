@@ -7,7 +7,7 @@ import './App.css'
 const App = () => {
   const [isOwner, setIsOwner] = useState(null);
   const [selfRegister, setSelfRegister] = useState(null);
-
+  const [isBasic, setIsBasic] = useState(null);
 
   const handleSelection = (e) => {
     setIsOwner(e.target.value === 'true');
@@ -17,6 +17,9 @@ const App = () => {
     setSelfRegister(e.target.value === 'true');
   };
 
+  const handleBasicSelection = (e) => {
+    setIsBasic(e.target.value === 'true');
+  };
 
   return (
     <div className="container">
@@ -31,9 +34,9 @@ const App = () => {
       </div>
       
       {isOwner === null ? (
-        <div className="row mt-5">  {/* margin-top 5 using Bootstrap */}
+        <div className="row mt-5">
           <div className="col-12">
-            <p className="display-3">Sind Sie Eigentümer oder Mieter?</p> {/* h4 class for typography */}
+            <p className="display-3">Sind Sie Eigentümer oder Mieter?</p>
             <button 
               className="btn btn-primary btn-lg m-2" 
               onClick={handleSelection} 
@@ -52,7 +55,7 @@ const App = () => {
         </div>
       ) : isOwner ? (
         selfRegister === null ? (
-          <div className="row mt-5">  {/* margin-top 5 using Bootstrap */}
+          <div className="row mt-5">
             <div className="col-12">
               <p className="display-3">Möchten Sie sich selbst anmelden oder möchten Sie eine andere Person anmelden?</p>
               <button 
@@ -72,7 +75,31 @@ const App = () => {
             </div>
           </div>
         ) : selfRegister ? (
-          <SignupForm />
+          isBasic === null ? (
+            <div className="row mt-5">
+              <div className="col-12">
+                <p className="display-3">Möchten Sie Sich in die Grundversorgung anmelden oder einen Laufzeitvertrag abschließen?</p>
+                <button 
+                  className="btn btn-primary btn-lg m-2" 
+                  onClick={handleBasicSelection} 
+                  value="true"
+                >
+                  Grundversorgung
+                </button>
+                <button 
+                  className="btn btn-secondary btn-lg m-2" 
+                  onClick={handleBasicSelection} 
+                  value="false"
+                >
+                  Laufzeitvertrag
+                </button>
+              </div>
+            </div>
+          ) : isBasic ? (
+            <SignupForm />
+          ) : (
+            <p>Laufzeitvertrag logic will be added here later.</p>
+          )
         ) : (
           <p>You've chosen to register another person. More logic will be added here later.</p>
         )

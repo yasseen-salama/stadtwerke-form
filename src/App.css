@@ -1,8 +1,48 @@
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .questions {
     font-size: 30px;
   }
-  
+.col-question {
+  flex-direction: column;
+}
+.question-container
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 .large-btn {
     padding: 20px 40px;  
     font-size: 24px;   
+  }
+
+.app-container {
+    border: 2px solid #A9A9A9;
+    border-radius: 50% 20% / 10% 40%;
+    padding: 80px; /* padding to prevent the content from touching the border */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    flex-direction: column;
+  }
+
+@keyframes moveUpFade {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+.fade-move-up {
+    animation: moveUpFade 1s ease-in-out;
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
-import "./styles.css";
+import "../styles.css";
 
 
 const SignupForm = () => {
@@ -20,7 +20,7 @@ const SignupForm = () => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="firstName">First Name</label>
+      <label htmlFor="firstName">Vorname</label>
       <input
         id="firstName"
         name="firstName"
@@ -29,7 +29,7 @@ const SignupForm = () => {
         value={formik.values.firstName}
       />
 
-      <label htmlFor="lastName">Last Name</label>
+      <label htmlFor="lastName">Nachname</label>
       <input
         id="lastName"
         name="lastName"
@@ -38,7 +38,7 @@ const SignupForm = () => {
         value={formik.values.lastName}
       />
 
-      <label htmlFor="email">Email Address</label>
+      <label htmlFor="email">E-Mail-Adresse</label>
       <input
         id="email"
         name="email"

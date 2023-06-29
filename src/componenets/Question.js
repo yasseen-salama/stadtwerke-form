@@ -1,8 +1,7 @@
 import React from 'react';
 
-const Question = ({ questionText, btn1Text, btn2Text, handleSelection }) => {
+const Question = ({ questionText, btn1Text, btn2Text, btn3Text, handleSelection }) => {
   return (
-    
     <div className="row mt-5">
       <div className="col-question">
         <div className="question-container">
@@ -23,6 +22,14 @@ const Question = ({ questionText, btn1Text, btn2Text, handleSelection }) => {
           >
             {btn2Text}
           </button>
+          {btn3Text && 
+            <button 
+              className="btn btn-secondary btn-lg m-2" 
+              onClick={handleSelection} 
+              value="false"
+            >
+              {btn3Text}
+            </button>}
         </div>
       </div>
     </div>

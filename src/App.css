@@ -30,13 +30,14 @@ div {
 .app-container {
     border: 2px solid #A9A9A9;
     border-radius: 10% 10% / 10% 10%;
-    padding: 80px; /* padding to prevent the content from touching the border */
-    
-    display: flex;
-    justify-content: center;
+    box-sizing: border-box; 
+    padding: 80px; 
     align-items: center;
     height: 100vh; 
     flex-direction: column;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto; 
   }
 
 @keyframes moveUpFade {
@@ -52,4 +53,15 @@ div {
   
 .fade-move-up {
     animation: moveUpFade 1s ease-in-out;
+  }
+
+.back-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+.back-button img {
+    margin-right: 10px;
   }

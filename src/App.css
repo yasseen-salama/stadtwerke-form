@@ -15,14 +15,21 @@ div {
     justify-content: center;
     align-items: center;
   }
-.large-btn {
-    padding: 20px 40px;  
-    font-size: 24px;   
-  }
+  .btn-primary, .btn-secondary {
+    background-color: #0093d3 !important;
+    border: #0093d3 !important;
+    font-size: 1.75rem !important;
+}
+.btn-secondary {
+  background-color: #808080 !important;
+  border: #808080  !important;
+  font-size: 1.75rem !important;
+}
+
 
 .app-container {
     border: 2px solid #A9A9A9;
-    border-radius: 50% 20% / 10% 40%;
+    border-radius: 10% 10% / 10% 10%;
     padding: 80px; /* padding to prevent the content from touching the border */
     
     display: flex;

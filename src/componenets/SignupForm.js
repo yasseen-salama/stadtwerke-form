@@ -4,12 +4,9 @@ import "../styles.css";
 
 
 const SignupForm = () => {
-  // Note that we have to initialize ALL of fields with values. These
-  // could come from props, but since we don’t want to prefill this form,
-  // we just use an empty string. If we don’t do this, React will yell
-  // at us.
   const formik = useFormik({
     initialValues: {
+      anrede: '',
       firstName: '',
       lastName: '',
       email: '',
@@ -20,6 +17,19 @@ const SignupForm = () => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
+      <label htmlFor="anrede">Anrede</label>
+      <select 
+        id="anrede" 
+        name="anrede" 
+        onChange={formik.handleChange} 
+        value={formik.values.anrede}
+      >
+        <option value=""></option>
+        <option value="Frau">Frau</option>
+        <option value="Herr">Herr</option>
+        <option value="Divers">Divers</option>
+      </select>
+      
       <label htmlFor="firstName">Vorname</label>
       <input
         id="firstName"
@@ -52,4 +62,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default SignupForm; 

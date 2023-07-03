@@ -117,6 +117,17 @@ const Onboarding = () => {
   );
 
   return (
+    <div className="button-questions">
+      {questionStack.length > 0 && (
+      <div role="button" onClick={handleBack} className="back-button">
+        <img 
+          src={process.env.PUBLIC_URL + '/Back_Arrow.svg'}
+          alt='Go Back'
+        />
+        <span>Zurück zur letzten Frage</span>
+      </div>
+    )}
+   
     <div>
        {currentQuestion ? (
         <motion.div
@@ -142,15 +153,7 @@ const Onboarding = () => {
       />
       )}
 
-      {questionStack.length > 0 && (
-        <div role="button" onClick={handleBack} className="back-button">
-          <img 
-            src={process.env.PUBLIC_URL + '/Back_Arrow.svg'}
-            alt='Go Back'
-          />
-          <span>Zurück</span>
-        </div>
-      )}
+    </div>
     </div>
   );
 };

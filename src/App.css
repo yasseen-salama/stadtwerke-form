@@ -65,3 +65,7 @@ div {
 .back-button img {
     margin-right: 10px;
   }
+  .button-questions {
+    flex-direction: column;
+    padding: 10px;
+  }

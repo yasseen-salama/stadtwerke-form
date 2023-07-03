@@ -44,6 +44,52 @@ const SignupForm = ({ isPrivateCustomer, isMoveOut }) => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
+      {!isPrivateCustomer && isMoveOut && (
+  <>
+    {/* business customers moving out */}
+    <label htmlFor="companyName">Firmenbezeichnung</label>
+    <input
+      id="comapnyName"
+      name="companyName"
+      type="text"
+      onChange={formik.handleChange}
+      value={formik.values.companyName}
+    />
+
+    <label htmlFor="legalForm">Rechtsform</label>
+    <select 
+      id="legalForm" 
+      name="legalForm" 
+      onChange={formik.handleChange} 
+      value={formik.values.legalForm}
+    >
+      <option value=""></option>
+      <option value="GmbH">GmbH</option>
+      <option value="Co. KG">Co. KG</option>
+      <option value="AG">AG</option>
+      <option value="KG">KG</option>
+      <option value="GmbH & Co. KG"> GmbH & Co. KG</option>
+      <option value="OHG">OHG</option>
+      <option value="UG">UG</option>
+      <option value="e.K.">e.K.</option>
+      <option value="GbR">GbR</option>
+      <option value="Sonstiges">Sonstiges</option>
+    </select>
+
+    {formik.values.legalForm === 'Sonstiges' && (
+      <>
+        <label htmlFor="legalFormOther">Welches Rechtform hat die Firma?</label>
+        <input
+          id="legalFormOther"
+          name="legalFormOther"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.legalFormOther}
+        />
+      </>
+    )}
+  </>
+)}
      <label htmlFor="anrede">Anrede</label>
       <select 
         id="anrede" 
@@ -307,53 +353,6 @@ const SignupForm = ({ isPrivateCustomer, isMoveOut }) => {
     />
   </>
 )}
-      {!isPrivateCustomer && isMoveOut && (
-  <>
-    {/* business customers moving out */}
-    <label htmlFor="companyName">Firmenbezeichnung</label>
-    <input
-      id="comapnyName"
-      name="companyName"
-      type="text"
-      onChange={formik.handleChange}
-      value={formik.values.companyName}
-    />
-
-    <label htmlFor="legalForm">Rechtsform</label>
-    <select 
-      id="legalForm" 
-      name="legalForm" 
-      onChange={formik.handleChange} 
-      value={formik.values.legalForm}
-    >
-      <option value=""></option>
-      <option value="GmbH">GmbH</option>
-      <option value="Co. KG">Co. KG</option>
-      <option value="AG">AG</option>
-      <option value="KG">KG</option>
-      <option value="GmbH & Co. KG"> GmbH & Co. KG</option>
-      <option value="OHG">OHG</option>
-      <option value="UG">UG</option>
-      <option value="e.K.">e.K.</option>
-      <option value="GbR">GbR</option>
-      <option value="Sonstiges">Sonstiges</option>
-    </select>
-
-    {formik.values.legalForm === 'Sonstiges' && (
-      <>
-        <label htmlFor="legalFormOther">Welches Rechtform hat die Firma?</label>
-        <input
-          id="legalFormOther"
-          name="legalFormOther"
-          type="text"
-          onChange={formik.handleChange}
-          value={formik.values.legalFormOther}
-        />
-      </>
-    )}
-  </>
-)}
-
 
       <button type="submit">Submit</button>
     </form>

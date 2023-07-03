@@ -28,17 +28,17 @@ div {
 
 
 .app-container {
-    border: 2px solid #A9A9A9;
-    border-radius: 10% 10% / 10% 10%;
-    box-sizing: border-box; 
-    padding: 80px; 
-    align-items: center;
-    height: 100vh; 
-    flex-direction: column;
-    max-width: 1400px;
-    width: 100%;
-    margin: 0 auto; 
-  }
+  border: 2px solid #A9A9A9;
+  border-radius: 10% 10% / 10% 10%;
+  box-sizing: border-box; 
+  padding: 80px; 
+  align-items: center;
+  min-height: 100vh;  
+  flex-direction: column;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto; 
+}
 
 @keyframes moveUpFade {
     0% {

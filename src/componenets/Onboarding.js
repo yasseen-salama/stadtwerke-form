@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Question from "./Question";
 import SignupForm from "./SignupForm";
+import { motion } from "framer-motion";
+
 
 const Onboarding = () => {    
   const [questionStack, setQuestionStack] = useState([]);
@@ -11,17 +13,31 @@ const Onboarding = () => {
   const [privateCustomer, setPrivateCustomer] = useState(null);
   const [moveOut, setMoveOut] = useState(null);
 
+ 
+  const variants = {
+    initial: { opacity: 0, y: 50 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -50 },
+  };
+
+  const transition = {
+    duration: 0.5, 
+    ease: "easeInOut", 
+    delay: 0.2, 
+  };
+
+
   const handleSelection = (questionKey, setter) => (e) => {
-    if (questionKey == 'basic' && e.target.value=== 'false') {
+    if (questionKey == 'basic' && e.target.value === 'false') {
         window.location.href = "https://portal.stadtwerke-pforzheim.de/powercommerce/swph/fo/portal/productSearch?execution=e176143354s1";
     }
     if (questionKey === 'businessOwner') {
         if(e.target.innerText === 'Eigentümer') {
-            setIsOwner('true');
+            setter(e.target.value);
         } else if (e.target.innerText === 'Hausverwaltung') {
-            setIsPropertyManager('true');
+            setIsPropertyManager(!e.target.value);
         } else {
-            setIsOwner('false');
+            setter(e.target.value);
         }
     } else  {
         setter(e.target.value === 'true');
@@ -73,7 +89,7 @@ const Onboarding = () => {
       btn1Text: "Eigentümer",
       btn2Text: "Mieter",
       btn3Text: "Hausverwaltung",
-      handler: handleSelection('businessOwner', null),
+      handler: handleSelection('businessOwner', setIsOwner),
       condition: () => privateCustomer === false
     },
     {
@@ -90,7 +106,7 @@ const Onboarding = () => {
       btn1Text: "Grundversorgung",
       btn2Text: "Laufzeitvertrag",
       handler: handleSelection('basic', setIsBasic),
-      condition: () => (isOwner === 'true' && selfRegister === 'true') || isPropertyManager === 'true' || (privateCustomer === true && isOwner  === false) ||  (privateCustomer === true && isOwner  === true && selfRegister == true) 
+      condition: () =>  (privateCustomer === true && isOwner  === false) ||  (privateCustomer === true && isOwner  === true && selfRegister == true) 
     },
   ];
 
@@ -102,8 +118,15 @@ const Onboarding = () => {
 
   return (
     <div>
-      {currentQuestion ? (
-        <div className="fade-move-up">
+       {currentQuestion ? (
+        <motion.div
+          key={currentQuestion.key}
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={transition} // Add this line
+        >
           <Question
             questionText={currentQuestion.text}
             btn1Text={currentQuestion.btn1Text}
@@ -111,9 +134,12 @@ const Onboarding = () => {
             btn3Text={currentQuestion.btn3Text}
             handleSelection={currentQuestion.handler}
           />
-        </div>
+        </motion.div>
       ) : (
-        <SignupForm />
+        <SignupForm 
+        isPrivateCustomer={privateCustomer} 
+        isMoveOut={moveOut}
+      />
       )}
 
       {questionStack.length > 0 && (
